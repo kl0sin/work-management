@@ -9,6 +9,12 @@ import { NotificationComponent } from './notification/component/notification.com
 @NgModule({
   declarations: [LogoComponent, FormComponent, NotificationComponent],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
-  exports: [LogoComponent, MaterialModule, FormComponent, ReactiveFormsModule]
+  exports: [
+    LogoComponent,
+    MaterialModule,
+    FormComponent,
+    ReactiveFormsModule,
+    NotificationComponent
+  ]
 })
 export class SharedModule {}
