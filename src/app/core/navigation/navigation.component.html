@@ -1,13 +1,17 @@
 <nav class="navigation">
   <app-logo></app-logo>
   <div class="navigation__spacer"></div>
-  <button mat-button>
+  <button routerLink="/login"
+          mat-button>
     Sign In
   </button>
-  <button mat-button>
+  <button routerLink="/register"
+          mat-button>
     Sign Up
   </button>
-  <button mat-button>
+  <!-- TODO: change this redirect to handle logout -->
+  <button routerLink="/login"
+          mat-button>
     Logout
   </button>
 </nav>
