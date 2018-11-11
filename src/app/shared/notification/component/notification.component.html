@@ -1,4 +1,4 @@
-<div class="notifications">
+<div class="notifications" [@listAnimation]>
   <div *ngFor="let notification of notifications; index as index"
        class="notification notification--{{notification.type}}">
     <i *ngIf="notification.type === 'warning'"
