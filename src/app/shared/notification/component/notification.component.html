@@ -1,5 +1,5 @@
 <div class="notifications">
-  <div *ngFor="let notification of notifications"
+  <div *ngFor="let notification of notifications; index as index"
        class="notification notification--{{notification.type}}">
     <i *ngIf="notification.type === 'warning'"
        class="notification__icon material-icons">warning</i>
@@ -10,6 +10,6 @@
     <div class="notification__text">
       {{ notification.text }}
     </div>
-    <i class="notification__close material-icons">close</i>
+    <i class="notification__close material-icons" (click)="removeNotification(index)">close</i>
   </div>
 </div>
