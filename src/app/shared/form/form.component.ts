@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
       firstName: null,
       lastName: null,
       password: null,
-      confirmPassword: null,
+      confirmPassword: null
     });
   }
 
@@ -36,7 +36,7 @@ export class FormComponent implements OnInit {
 
   setUpForm(): void {
     switch (this.type) {
-      case 'register' : {
+      case 'register': {
         this.isEmail = true;
         this.isFirstName = true;
         this.isLastName = true;

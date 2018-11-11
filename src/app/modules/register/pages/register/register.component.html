@@ -1,3 +1,8 @@
-<p>
-  register works!
-</p>
+<div class="register">
+  <div class="register__form">
+    <app-form title="Sign up" type="register" isClear="true" (outSubmit)="submit($event)"></app-form>
+  </div>
+  <div class="register__login login">
+      Already have an account? <span (click)="goToLoginPage()" class="login__link">Log in</span> instead.
+  </div>
+</div>
