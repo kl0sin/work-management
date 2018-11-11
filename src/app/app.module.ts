@@ -1,3 +1,4 @@
+import { LoginModule } from './modules/login/login.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -6,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './modules/home/pages/home/home.component';
+import { RegisterModule } from './modules/register/register.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -13,7 +15,9 @@ import { HomeComponent } from './modules/home/pages/home/home.component';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    LoginModule,
+    RegisterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

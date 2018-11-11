@@ -1,0 +1,18 @@
+.login {
+  margin: 150px auto 30px;
+  padding: 16px;
+  max-width: 400px;
+  &__form {
+    border-radius: 5px;
+    padding: 16px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, .5);
+  }
+  .create {
+    text-align: center;
+    margin-top: 30px;
+    &__link {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
