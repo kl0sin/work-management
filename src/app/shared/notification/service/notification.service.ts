@@ -9,19 +9,19 @@ export class NotificationService {
   notificationList: Notification[] = [
     {
       type: 'warning',
-      text: 'warning text'
+      text: 'Warning notification'
     },
     {
       type: 'success',
-      text: 'success test'
+      text: 'Success notification'
     },
     {
       type: 'alert',
-      text: 'alert text'
+      text: 'Alert notification'
     },
     {
       type: 'info',
-      text: 'info text'
+      text: 'Info notification'
     }
   ];
 

@@ -1,4 +1,5 @@
-<div class="notifications" [@listAnimation]>
+<div class="notifications"
+     [@inOutListAnimation]="notifications.length">
   <div *ngFor="let notification of notifications; index as index"
        class="notification notification--{{notification.type}}">
     <i *ngIf="notification.type === 'warning'"
@@ -10,6 +11,7 @@
     <div class="notification__text">
       {{ notification.text }}
     </div>
-    <i class="notification__close material-icons" (click)="removeNotification(index)">close</i>
+    <i class="notification__close material-icons"
+       (click)="removeNotification(index)">close</i>
   </div>
 </div>

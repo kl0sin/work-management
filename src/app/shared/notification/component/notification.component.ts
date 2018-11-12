@@ -2,26 +2,44 @@ import { NotificationService } from './../service/notification.service';
 import { Notification } from './../models/notification';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import {trigger, transition, style, animate, query, stagger} from '@angular/animations';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  query,
+  stagger
+} from '@angular/animations';
 
 @Component({
   selector: 'app-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   animations: [
-    trigger('listAnimation', [
+    trigger('inOutListAnimation', [
       transition('* => *', [
-        query(':leave', [
-          stagger(100, [
-            animate('0.5s', style({ opacity: 0 }))
-          ])
-        ], { optional: true }),
-        query(':enter', [
-          style({ opacity: 0 }),
-          stagger(100, [
-            animate('0.5s', style({ opacity: 1 }))
-          ])
-        ], { optional: true })
+        query(
+          ':enter',
+          [
+            style({ transform: 'translateX(-120%)' }),
+            stagger(200, [
+              animate('500ms ease-out', style({ transform: 'translateX(0)' }))
+            ])
+          ],
+          { optional: true }
+        ),
+        query(
+          ':leave',
+          [
+            stagger(200, [
+              animate(
+                '500ms ease-in',
+                style({ transform: 'translateX(-120%)' })
+              )
+            ])
+          ],
+          { optional: true }
+        )
       ])
     ])
   ]
