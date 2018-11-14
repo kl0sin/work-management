@@ -6,24 +6,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationService {
-  notificationList: Notification[] = [
-    {
-      type: 'warning',
-      text: 'Warning notification'
-    },
-    {
-      type: 'success',
-      text: 'Success notification'
-    },
-    {
-      type: 'alert',
-      text: 'Alert notification'
-    },
-    {
-      type: 'info',
-      text: 'Info notification'
-    }
-  ];
+  notificationList: Notification[] = [];
 
   constructor() {}
 
