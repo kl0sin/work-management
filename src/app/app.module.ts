@@ -9,7 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 import { RegisterModule } from './modules/register/register.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './guards/auth/auth.guard';
+import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -23,7 +25,14 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,17 +1,14 @@
 <nav class="navigation">
   <app-logo></app-logo>
   <div class="navigation__spacer"></div>
-  <button routerLink="/login"
-          mat-button>
+  <button routerLink="/login" *ngIf="!authService.isUserLogged()" mat-button>
     Sign In
   </button>
-  <button routerLink="/register"
-          mat-button>
+  <button routerLink="/register" *ngIf="!authService.isUserLogged()" mat-button>
     Sign Up
   </button>
   <!-- TODO: change this redirect to handle logout -->
-  <button routerLink="/login"
-          mat-button>
+  <button routerLink="/login" *ngIf="authService.isUserLogged()" (click)="logoutUser()" mat-button>
     Logout
   </button>
 </nav>

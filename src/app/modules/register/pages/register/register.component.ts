@@ -16,14 +16,13 @@ export class RegisterComponent implements OnInit {
   submit(data: Form): void {
     this.userService.registerUser(data).subscribe(
       res => {
-        console.log(res);
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['']);
       },
       err => {
         console.log(err);
       }
     );
-
-    console.log(data);
   }
 
   goToLoginPage(): void {
