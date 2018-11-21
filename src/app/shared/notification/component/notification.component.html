@@ -9,7 +9,7 @@
     <i *ngIf="notification.type === 'success'"
        class="notification__icon material-icons">check_circle</i>
     <div class="notification__text">
-      {{ notification.text }}
+      {{ notification.message }}
     </div>
     <i class="notification__close material-icons"
        (click)="removeNotification(index)">close</i>

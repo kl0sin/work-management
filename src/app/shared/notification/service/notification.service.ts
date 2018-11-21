@@ -16,6 +16,12 @@ export class NotificationService {
 
   addNotification(notification: Notification): void {
     this.notificationList.push(notification);
+    if (notification.duration) {
+      setTimeout(() => {
+        const notificationIndex = this.notificationList.indexOf(notification);
+        this.notificationList.splice(notificationIndex, 1);
+      }, notification.duration);
+    }
   }
 
   removeNotification(notificationIndex: number): void {

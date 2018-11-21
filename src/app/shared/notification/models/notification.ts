@@ -1,5 +1,5 @@
 export interface Notification {
   type: string;
-  text: string;
+  message: string;
   duration?: number;
 }
