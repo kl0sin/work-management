@@ -1,0 +1,13 @@
+@import 'src/assets/scss/variables';
+
+.not-found {
+  margin: 150px 0 50px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 3em;
+  color: $primary;
+  &__additional {
+    color: #434a51;
+    font-size: .4em;
+  }
+}

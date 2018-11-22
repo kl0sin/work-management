@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
+import { NotFoundModule } from './modules/not-found/not-found.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -23,6 +24,7 @@ import { TokenInterceptorService } from './services/token-interceptor/token-inte
     SharedModule,
     LoginModule,
     RegisterModule,
+    NotFoundModule,
     HttpClientModule
   ],
   providers: [

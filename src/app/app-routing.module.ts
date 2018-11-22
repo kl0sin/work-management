@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './modules/home/pages/home/home.component';
 import { LoginComponent } from './modules/login/pages/login/login.component';
 import { AuthGuard } from './guards/auth/auth.guard';
+import { NotFoundComponent } from './modules/not-found/page/not-found.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
