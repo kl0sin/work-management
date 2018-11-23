@@ -1,0 +1,14 @@
+<table class="calendar">
+  <tr>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+  </tr>
+  <tr *ngFor="let week of displayMonth">
+    <td *ngFor="let day of week">{{ day | dfnsFormat: 'DD'}}</td>
+  </tr>
+</table>

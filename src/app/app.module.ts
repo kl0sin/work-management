@@ -6,16 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { HomeComponent } from './modules/home/pages/home/home.component';
 import { RegisterModule } from './modules/register/register.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { TokenInterceptorService } from './services/token-interceptor/token-interceptor.service';
 import { NotFoundModule } from './modules/not-found/not-found.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,7 +25,8 @@ import { NotFoundModule } from './modules/not-found/not-found.module';
     LoginModule,
     RegisterModule,
     NotFoundModule,
-    HttpClientModule
+    HttpClientModule,
+    HomeModule
   ],
   providers: [
     AuthGuard,
