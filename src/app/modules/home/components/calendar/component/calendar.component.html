@@ -5,8 +5,15 @@
     </div>
   </div>
   <div *ngFor="let week of displayMonth; index as i" class="calendar__row row">
-    <div *ngFor="let day of week" class="row__day">
-      {{ day | dfnsFormat: 'DD' }}
+    <div
+      *ngFor="let day of week"
+      class="row__day"
+      [ngClass]="{
+        'row__day--not-current': !day.isInCurrentMonth,
+        'row__day--today': day.isToday
+      }"
+    >
+      {{ day.day | dfnsFormat: 'DD' }}
     </div>
   </div>
 </div>
