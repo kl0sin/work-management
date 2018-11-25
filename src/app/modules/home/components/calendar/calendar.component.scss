@@ -1,0 +1,36 @@
+.calendar {
+  width: 100%;
+  border: none;
+
+  .header {
+    width: 100%;
+    display: flex;
+
+    &__label {
+      flex: 1 1 0;
+      display: inline-block;
+      text-align: left;
+      padding: 5px 0 0 8px;
+      border-right: #e0e0e0 1px solid;
+      font-size: 14px;
+      vertical-align: bottom;
+      color: #757575;
+    }
+  }
+
+  .row {
+    width: 100%;
+    display: flex;
+    
+    &__day {
+      flex: 1 1 0;
+      display: inline-block;
+      text-align: left;
+      padding: 0 0 0 8px;
+      line-height: 32px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #212121;
+    }
+  }
+}

@@ -1,14 +1,12 @@
-<table class="calendar">
-  <tr>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-    <th>Saturday</th>
-    <th>Sunday</th>
-  </tr>
-  <tr *ngFor="let week of displayMonth">
-    <td *ngFor="let day of week">{{ day | dfnsFormat: 'DD'}}</td>
-  </tr>
-</table>
+<div class="calendar">
+  <div class="calendar__header header">
+    <div *ngFor="let label of calendarLabels" class="header__label">
+      {{ label }}
+    </div>
+  </div>
+  <div *ngFor="let week of displayMonth; index as i" class="calendar__row row">
+    <div *ngFor="let day of week" class="row__day">
+      {{ day | dfnsFormat: 'DD' }}
+    </div>
+  </div>
+</div>

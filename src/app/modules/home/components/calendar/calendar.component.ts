@@ -9,11 +9,24 @@ import { CalendarService } from 'src/app/services/calendar/calendar.service';
 export class CalendarComponent implements OnInit {
   currentDate = new Date();
   displayMonth: Array<any>;
+  calendarLabels = [
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat',
+    'Sun'
+  ];
 
   constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
-    this.displayMonth = this.calendarService.calculateMonth(this.currentDate);
+    this.getMonth(this.currentDate);
+  }
+
+  getMonth(month: any): void {
+    this.displayMonth = this.calendarService.calculateMonth(month);
   }
 
 }

@@ -32,6 +32,7 @@ export class CalendarService {
     tempMonthRange.push(tempMonth.slice(21, 28));
     tempMonthRange.push(tempMonth.slice(28, 35));
 
+    console.log(tempMonthRange);
     return tempMonthRange;
   }
 }
