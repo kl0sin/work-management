@@ -10,13 +10,13 @@ export class CalendarComponent implements OnInit {
   currentDate = new Date();
   displayMonth: Array<any>;
   calendarLabels = [
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat',
-    'Sun'
+    'Mon.',
+    'Tue.',
+    'Wed.',
+    'Thu.',
+    'Fri.',
+    'Sat.',
+    'Sun.'
   ];
 
   constructor(private calendarService: CalendarService) { }
