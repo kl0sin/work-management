@@ -1,77 +1,75 @@
 <div class="form">
-  <h2 class="form__title">
-    {{ title }}
-  </h2>
-  <form [formGroup]="userForm"
-        (ngSubmit)=submit()>
-    <mat-form-field class="form__input"
-                    *ngIf="isEmail">
-      <input matInput
-             formControlName="email"
-             required
-             placeholder="Email"
-             type="email">
-      <mat-error>
-        Email is <strong>required</strong>
-      </mat-error>
+  <h2 class="form__title">{{ title }}</h2>
+  <form [formGroup]="userForm" (ngSubmit)="submit()">
+    <mat-form-field class="form__input" *ngIf="isEmail">
+      <input
+        matInput
+        formControlName="email"
+        required
+        placeholder="Email"
+        type="email"
+      />
+      <mat-error> Email is <strong>required</strong> </mat-error>
     </mat-form-field>
-    <mat-form-field class="form__input"
-                    *ngIf="isFirstName">
-      <input matInput
-             formControlName="firstName"
-             required
-             placeholder="First Name"
-             type="text">
-      <mat-error>
-        First name is <strong>required</strong>
-      </mat-error>
+    <mat-form-field class="form__input" *ngIf="isFirstName">
+      <input
+        matInput
+        formControlName="firstName"
+        required
+        placeholder="First Name"
+        type="text"
+      />
+      <mat-error> First name is <strong>required</strong> </mat-error>
     </mat-form-field>
-    <mat-form-field class="form__input"
-                    *ngIf="isLastName">
-      <input matInput
-             formControlName="lastName"
-             required
-             placeholder="Last Name"
-             type="text">
-      <mat-error>
-        Last name is <strong>required</strong>
-      </mat-error>
+    <mat-form-field class="form__input" *ngIf="isLastName">
+      <input
+        matInput
+        formControlName="lastName"
+        required
+        placeholder="Last Name"
+        type="text"
+      />
+      <mat-error> Last name is <strong>required</strong> </mat-error>
     </mat-form-field>
-    <mat-form-field class="form__input"
-                    *ngIf="isPassword">
-      <input matInput
-             formControlName="password"
-             required
-             placeholder="Password"
-             type="password">
-      <mat-error>
-        Password is <strong>required</strong>
-      </mat-error>
+    <mat-form-field class="form__input" *ngIf="isPassword">
+      <input
+        matInput
+        formControlName="password"
+        required
+        placeholder="Password"
+        type="password"
+      />
+      <mat-error> Password is <strong>required</strong> </mat-error>
     </mat-form-field>
-    <mat-form-field class="form__input"
-                    *ngIf="isConfirmPassword">
-      <input matInput
-             formControlName="confirmPassword"
-             required
-             placeholder="Confirm Password"
-             type="password">
+    <mat-form-field class="form__input" *ngIf="isConfirmPassword">
+      <input
+        matInput
+        formControlName="confirmPassword"
+        required
+        placeholder="Confirm Password"
+        type="password"
+      />
       <mat-error>
         You need to <strong>confirm</strong> your password.
       </mat-error>
     </mat-form-field>
 
     <div class="form__buttons buttons">
-      <button class="buttons__button"
-              mat-raised-button
-              type="button"
-              *ngIf="isClear"
-              (click)="resetForm()">
+      <button
+        class="buttons__button"
+        mat-raised-button
+        type="button"
+        *ngIf="isClear"
+        (click)="resetForm()"
+      >
         Clear
       </button>
-      <button class="buttons__button"
-              mat-raised-button
-              type="submit"
-              color="primary">
+      <button
+        class="buttons__button"
+        mat-raised-button
+        type="submit"
+        color="primary"
+      >
         Submit
       </button>
     </div>
