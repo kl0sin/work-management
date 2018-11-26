@@ -1,0 +1,74 @@
+@import 'src/assets/scss/variables';
+
+.mini-calendar {
+  box-sizing: border-box;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__controls {
+    text-align: center;
+    margin: 3px 0;
+    font-size: 0.8em;
+  }
+
+  .header { 
+    width: 100%;
+    display: flex;
+    flex: 1 1 0;
+    justify-content: center;
+
+    &__label {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.625em;
+      font-weight: 600;
+      margin: 0 2px;
+      color: #757575;
+    }
+  }
+
+  .row {
+    width: 100%;
+    display: flex;
+    flex: 1 1 0;
+    justify-content: center;
+
+    &__day {
+      box-sizing: border-box;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.625em;
+      color: #212121;
+      border-radius: 50%;
+      margin: 0 2px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+
+      &--not-current {
+        color: #757575;
+      }
+
+      &--today {
+        background-color: $primary;
+        color: #fff;
+
+        &:hover {
+          background-color: $primary;
+        }
+      }
+    }
+  }
+}

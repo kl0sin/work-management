@@ -7,6 +7,7 @@ import {
   isSameMonth,
   startOfISOWeek,
   startOfMonth,
+  format
 } from 'date-fns';
 import { Day } from 'src/app/modules/home/components/calendar/models/day';
 
@@ -16,7 +17,7 @@ import { Day } from 'src/app/modules/home/components/calendar/models/day';
 export class CalendarService {
   today: Date = new Date();
 
-  constructor() { }
+  constructor() {}
 
   calculateMonth(month: Date) {
     const startOfDates = startOfISOWeek(startOfMonth(month));
@@ -26,7 +27,9 @@ export class CalendarService {
     const tempMonthRange = [];
 
     eachDay(startOfDates, endOfDates).forEach(day => {
-      tempMonth.push(new Day(day, isSameMonth(day, month), isSameDay(day, month)));
+      tempMonth.push(
+        new Day(day, isSameMonth(day, month), isSameDay(day, month))
+      );
     });
 
     tempMonthRange.push(tempMonth.slice(0, 7));
@@ -36,5 +39,11 @@ export class CalendarService {
     tempMonthRange.push(tempMonth.slice(28, 35));
 
     return tempMonthRange;
+  }
+
+  getMonthName(month: Date, type: string): string {
+    const monthLabel = format(month, type);
+
+    return monthLabel;
   }
 }

@@ -1,0 +1,20 @@
+<div class="mini-calendar">
+  <div class="mini-calendar__controls">
+    {{ monthLabel }}
+  </div>
+  <div class="mini-calendar__header header">
+    <div *ngFor="let label of dayLabels" class="header__label">{{ label }}</div>
+  </div>
+  <div *ngFor="let week of displayMonth" class="mini-calendar__row row">
+    <div
+      *ngFor="let day of week"
+      class="row__day"
+      [ngClass]="{
+        'row__day--not-current': !day.isInCurrentMonth,
+        'row__day--today': day.isToday
+      }"
+    >
+      {{ day.day | dfnsFormat: 'D' }}
+    </div>
+  </div>
+</div>

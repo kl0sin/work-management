@@ -25,7 +25,7 @@ export class CalendarComponent implements OnInit {
     this.getMonth(this.currentDate);
   }
 
-  getMonth(month: any): void {
+  getMonth(month: Date): void {
     this.displayMonth = this.calendarService.calculateMonth(month);
   }
 
