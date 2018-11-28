@@ -11,13 +11,13 @@ export class MiniCalendarComponent implements OnInit {
   today: Date = new Date();
   selectedMonth: any;
   selectedYear: any;
-  displayMonth: Array<any>;
+  displayMonth: Array<Date[]>;
   displayLabel: string;
   dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
   constructor(private calendarService: CalendarService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.selectedYear = this.today.getFullYear();
     this.selectedMonth = this.today.getMonth();
     this.getMonth(this.selectedYear, this.selectedMonth, this.today);

@@ -7,8 +7,11 @@ import { CalendarService } from 'src/app/services/calendar/calendar.service';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  currentDate = new Date();
-  displayMonth: Array<any>;
+  today: Date = new Date();
+  selectedMonth: number;
+  selectedYear: number;
+  displayMonth: Array<Date[]>;
+  displayLabel: string;
   calendarLabels = [
     'Mon.',
     'Tue.',
@@ -21,12 +24,17 @@ export class CalendarComponent implements OnInit {
 
   constructor(private calendarService: CalendarService) { }
 
-  ngOnInit() {
-    this.getMonth(this.currentDate);
+  ngOnInit(): void {
+    this.selectedYear = this.today.getFullYear();
+    this.selectedMonth = this.today.getMonth();
+    this.getMonth(this.selectedYear, this.selectedMonth, this.today);
   }
 
-  getMonth(month: Date): void {
-    this.displayMonth = this.calendarService.calculateMonth(month);
+  getMonth(year: number, month: number, today: Date): void {
+    const recivedMonth = this.calendarService.calculateMonth(year, month, today);
+
+    this.displayMonth = recivedMonth.month;
+    this.displayLabel = recivedMonth.label;
   }
 
 }
