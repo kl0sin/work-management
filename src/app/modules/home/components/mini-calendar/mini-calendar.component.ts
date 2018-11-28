@@ -33,9 +33,7 @@ export class MiniCalendarComponent implements OnInit {
       this.today
     );
 
-    this.selectedYear = nextMonth.updatedYear;
-    this.selectedMonth = nextMonth.updatedMonth;
-    this.displayMonth = nextMonth.displayMonth;
+    this.updateMonth(nextMonth);
   }
 
   prievMonth(): void {
@@ -45,8 +43,12 @@ export class MiniCalendarComponent implements OnInit {
       this.today
     );
 
-    this.selectedYear = prievMonth.updatedYear;
-    this.selectedMonth = prievMonth.updatedMonth;
-    this.displayMonth = prievMonth.displayMonth;
+    this.updateMonth(prievMonth);
+  }
+
+  updateMonth(updatedMonth): void {
+    this.selectedYear = updatedMonth.updatedYear;
+    this.selectedMonth = updatedMonth.updatedMonth;
+    this.displayMonth = updatedMonth.displayMonth;
   }
 }
