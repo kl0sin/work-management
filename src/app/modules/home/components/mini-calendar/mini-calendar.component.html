@@ -1,6 +1,8 @@
 <div class="mini-calendar">
-  <div class="mini-calendar__controls">
+  <div class="mini-calendar__controls controls">
+    <span class="controls__action" (click)="prievMonth()"><</span>
     {{ monthLabel }}
+    <span class="controls__action" (click)="nextMonth()">></span>
   </div>
   <div class="mini-calendar__header header">
     <div *ngFor="let label of dayLabels" class="header__label">{{ label }}</div>

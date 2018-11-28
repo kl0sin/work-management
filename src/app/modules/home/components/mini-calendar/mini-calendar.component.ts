@@ -7,32 +7,46 @@ import { CalendarService } from 'src/app/services/calendar/calendar.service';
   styleUrls: ['./mini-calendar.component.scss']
 })
 export class MiniCalendarComponent implements OnInit {
-  currentDate: Date = new Date();
+  today: Date = new Date();
+  selectedMonth: any;
+  selectedYear: any;
   displayMonth: Array<any>;
   monthLabel: string;
-  dayLabels = [
-    'M',
-    'T',
-    'W',
-    'T',
-    'F',
-    'S',
-    'S'
-  ];
+  dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
-  constructor(private calendarService: CalendarService) { }
+  constructor(private calendarService: CalendarService) {}
 
   ngOnInit() {
-    this.getMonth(this.currentDate);
+    this.selectedYear = this.today.getFullYear();
+    this.selectedMonth = this.today.getMonth();
+    this.getMonth(this.selectedYear, this.selectedMonth, this.today);
   }
 
-  getMonth(month: Date): void {
-    this.displayMonth = this.calendarService.calculateMonth(month);
-    this.getMonthName(month);
+  getMonth(year: number, month: number, today: Date): void {
+    this.displayMonth = this.calendarService.calculateMonth(year, month, today);
   }
 
-  getMonthName(month: Date): void {
-    this.monthLabel = this.calendarService.getMonthName(month, 'MMMM');
+  nextMonth(): void {
+    const nextMonth = this.calendarService.nextMonth(
+      this.selectedYear,
+      this.selectedMonth,
+      this.today
+    );
+
+    this.selectedYear = nextMonth.updatedYear;
+    this.selectedMonth = nextMonth.updatedMonth;
+    this.displayMonth = nextMonth.displayMonth;
   }
 
+  prievMonth(): void {
+    const prievMonth = this.calendarService.prievMonth(
+      this.selectedYear,
+      this.selectedMonth,
+      this.today
+    );
+
+    this.selectedYear = prievMonth.updatedYear;
+    this.selectedMonth = prievMonth.updatedMonth;
+    this.displayMonth = prievMonth.displayMonth;
+  }
 }
