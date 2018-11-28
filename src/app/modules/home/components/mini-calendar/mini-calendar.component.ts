@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar/calendar.service';
+import { UpdatedCalendar } from 'src/app/services/calendar/interfaces/updated-calendar';
 
 @Component({
   selector: 'app-mini-calendar',
@@ -11,7 +12,7 @@ export class MiniCalendarComponent implements OnInit {
   selectedMonth: any;
   selectedYear: any;
   displayMonth: Array<any>;
-  monthLabel: string;
+  displayLabel: string;
   dayLabels = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
   constructor(private calendarService: CalendarService) {}
@@ -23,7 +24,10 @@ export class MiniCalendarComponent implements OnInit {
   }
 
   getMonth(year: number, month: number, today: Date): void {
-    this.displayMonth = this.calendarService.calculateMonth(year, month, today);
+    const recivedMonth = this.calendarService.calculateMonth(year, month, today);
+
+    this.displayMonth = recivedMonth.month;
+    this.displayLabel = recivedMonth.label;
   }
 
   nextMonth(): void {
@@ -46,9 +50,11 @@ export class MiniCalendarComponent implements OnInit {
     this.updateMonth(prievMonth);
   }
 
-  updateMonth(updatedMonth): void {
+  updateMonth(updatedMonth: UpdatedCalendar): void {
     this.selectedYear = updatedMonth.updatedYear;
     this.selectedMonth = updatedMonth.updatedMonth;
-    this.displayMonth = updatedMonth.displayMonth;
+    this.displayMonth = updatedMonth.displayMonth.month;
+    this.displayLabel = updatedMonth.displayMonth.label;
+
   }
 }

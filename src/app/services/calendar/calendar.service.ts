@@ -10,6 +10,8 @@ import {
   format,
 } from 'date-fns';
 import { Day } from 'src/app/modules/home/components/calendar/models/day';
+import { Calendar } from './interfaces/calendar';
+import { UpdatedCalendar } from './interfaces/updated-calendar';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +21,15 @@ export class CalendarService {
 
   constructor() {}
 
-  calculateMonth(year: number, month: number, today: Date): Array<[]> {
+  calculateMonth(year: number, month: number, today: Date): Calendar {
     const tempDay = new Date(year, month);
+    const tempMonth = [];
+    const tempMonthRange = [];
+    const tempMonthLabel = format(tempDay, 'MMMM');
 
     const tempStartOfMonth = startOfISOWeek(startOfMonth(tempDay));
     const tempEndOfMonth = endOfISOWeek(endOfMonth(tempDay));
 
-    const tempMonth = [];
-    const tempMonthRange = [];
 
     eachDay(tempStartOfMonth, tempEndOfMonth).forEach(day => {
       tempMonth.push(
@@ -40,10 +43,15 @@ export class CalendarService {
     tempMonthRange.push(tempMonth.slice(21, 28));
     tempMonthRange.push(tempMonth.slice(28, 35));
 
-    return tempMonthRange;
+    const returnObject = {
+      month: tempMonthRange,
+      label: tempMonthLabel
+    };
+
+    return returnObject;
   }
 
-  nextMonth(year: number, month: number, today: Date): any {
+  nextMonth(year: number, month: number, today: Date): UpdatedCalendar {
     let tempYear = year;
     let tempMonth = month;
 
@@ -65,7 +73,7 @@ export class CalendarService {
     return returnObject;
   }
 
-  prievMonth(year: number, month: number, today: Date): any {
+  prievMonth(year: number, month: number, today: Date): UpdatedCalendar {
     let tempYear = year;
     let tempMonth = month;
 
@@ -78,8 +86,6 @@ export class CalendarService {
 
     const newMonth = this.calculateMonth(tempYear, tempMonth, today);
 
-    console.log(newMonth);
-
     const returnObject = {
       updatedYear: tempYear,
       updatedMonth: tempMonth,
@@ -87,11 +93,5 @@ export class CalendarService {
     };
 
     return returnObject;
-  }
-
-  getMonthName(month: Date, type: string): string {
-    const monthLabel = format(month, type);
-
-    return monthLabel;
   }
 }
