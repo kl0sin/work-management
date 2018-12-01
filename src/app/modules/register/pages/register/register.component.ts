@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Form } from 'src/app/shared/form/models/Form';
+import { Form } from '../../../../shared/form/models/form';
 import { UserService } from '../../../../services/user/user.service';
 import { NotificationService } from 'src/app/shared/notification/service/notification.service';
 import { Notification } from 'src/app/shared/notification/models/notification';

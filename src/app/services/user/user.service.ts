@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Form } from 'src/app/shared/form/models/Form';
+import { Form } from '../../shared/form/models/form';
 
 @Injectable({
   providedIn: 'root'

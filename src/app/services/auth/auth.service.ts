@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Form } from 'src/app/shared/form/models/Form';
+import { Form } from '../../shared/form/models/form';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
