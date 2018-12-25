@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar/calendar.service';
+import { ModalService } from 'src/app/services/modal/modal.service';
+import { NewEventComponent } from '../../new-event/new-event.component';
 
 @Component({
   selector: 'app-calendar',
@@ -22,19 +24,25 @@ export class CalendarComponent implements OnInit {
     'Sun.'
   ];
 
-  constructor(private calendarService: CalendarService) { }
+  constructor(private calendarService: CalendarService, private modalService: ModalService) { }
 
   ngOnInit(): void {
     this.selectedYear = this.today.getFullYear();
     this.selectedMonth = this.today.getMonth();
     this.getMonth(this.selectedYear, this.selectedMonth, this.today);
+
+    this.createModal();
   }
 
   getMonth(year: number, month: number, today: Date): void {
-    const recivedMonth = this.calendarService.calculateMonth(year, month, today);
+    const receivedMonth = this.calendarService.calculateMonth(year, month, today);
 
-    this.displayMonth = recivedMonth.month;
-    this.displayLabel = recivedMonth.label;
+    this.displayMonth = receivedMonth.month;
+    this.displayLabel = receivedMonth.label;
+  }
+
+  createModal(): void {
+    this.modalService.createModal(NewEventComponent);
   }
 
 }

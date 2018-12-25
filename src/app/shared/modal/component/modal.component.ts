@@ -1,4 +1,3 @@
-import { NewEventComponent } from './../../../modules/home/components/new-event/new-event.component';
 import {
   Component,
   OnInit,
@@ -6,6 +5,8 @@ import {
   ViewContainerRef,
   ViewChild
 } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ModalService } from 'src/app/services/modal/modal.service';
 
 @Component({
   selector: 'app-modal',
@@ -13,22 +14,38 @@ import {
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
-  @ViewChild('dynamicComponent', { read: ViewContainerRef }) dynamicComponent: any;
+  @ViewChild('dynamicComponent', { read: ViewContainerRef })
+  dynamicComponent: any;
+
+  modalComponentSubscription: Subscription;
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private viewContainerRef: ViewContainerRef
+    private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
-    this.createDynamicComponent();
+    this.modalService.modalComponent$.subscribe(component => {
+      console.log(component);
+      this.createDynamicComponent(component);
+    });
   }
 
-  createDynamicComponent(): void {
-    const factory = this.componentFactoryResolver.resolveComponentFactory(
-      NewEventComponent
-    );
-    const componentRef = this.dynamicComponent.createComponent(factory);
+  createDynamicComponent(component: any): void {
+    if (component) {
+      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
+        component
+      );
+      const componentRef = this.dynamicComponent.createComponent(
+        componentFactory
+      );
+      componentRef.changeDetectorRef.detectChanges();
+    } else {
+      this.dynamicComponent.clear();
+    }
+  }
 
-    componentRef.changeDetectorRef.detectChanges();
+  closeModal(): void {
+    this.modalService.closeModal();
   }
 }
