@@ -1,0 +1,6 @@
+<div class="overlay" *ngIf="component">
+  <div class="modal">
+    <fa-icon class="modal__close" [icon]="faTimes" (click)="closeModal()"></fa-icon>
+    <ng-template #dynamicComponent></ng-template>
+  </div>
+</div>

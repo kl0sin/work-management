@@ -14,7 +14,6 @@ export class ModalService {
   constructor() {}
 
   createModal(component: any): void {
-    console.log('createModal from modal service');
     this.modalComponent$.next(component);
   }
 

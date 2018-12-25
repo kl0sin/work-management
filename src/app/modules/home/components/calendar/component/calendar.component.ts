@@ -30,8 +30,6 @@ export class CalendarComponent implements OnInit {
     this.selectedYear = this.today.getFullYear();
     this.selectedMonth = this.today.getMonth();
     this.getMonth(this.selectedYear, this.selectedMonth, this.today);
-
-    this.createModal();
   }
 
   getMonth(year: number, month: number, today: Date): void {

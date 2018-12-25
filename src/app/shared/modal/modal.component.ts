@@ -1,23 +1,30 @@
 import {
   Component,
   OnInit,
+  OnDestroy,
   ComponentFactoryResolver,
   ViewContainerRef,
-  ViewChild
+  ViewChild,
+  Type,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal/modal.service';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
   @ViewChild('dynamicComponent', { read: ViewContainerRef })
-  dynamicComponent: any;
+  viewContainerRef: any;
+
+  component: Type<{}>;
 
   modalComponentSubscription: Subscription;
+
+  faTimes = faTimes;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -25,27 +32,31 @@ export class ModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.modalService.modalComponent$.subscribe(component => {
-      console.log(component);
+    this.modalComponentSubscription = this.modalService.modalComponent$.subscribe(component => {
+      this.component = component;
       this.createDynamicComponent(component);
     });
   }
 
-  createDynamicComponent(component: any): void {
-    if (component) {
+  createDynamicComponent(component: Type<{}>): void {
+    if (this.component) {
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
         component
       );
-      const componentRef = this.dynamicComponent.createComponent(
+      const componentRef = this.viewContainerRef.createComponent(
         componentFactory
       );
       componentRef.changeDetectorRef.detectChanges();
     } else {
-      this.dynamicComponent.clear();
+      this.viewContainerRef.clear();
     }
   }
 
   closeModal(): void {
     this.modalService.closeModal();
+  }
+
+  ngOnDestroy(): void {
+    this.modalComponentSubscription.unsubscribe();
   }
 }

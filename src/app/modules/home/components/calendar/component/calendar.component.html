@@ -12,6 +12,7 @@
         'row__day--not-current': !day.isInCurrentMonth,
         'row__day--today': day.isToday
       }"
+      (click)="createModal()"
     >
       {{ day.day | dfnsFormat: 'DD' }}
     </div>
