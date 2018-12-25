@@ -6,6 +6,8 @@ import {
   ViewContainerRef,
   ViewChild,
   Type,
+  ElementRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal/modal.service';
@@ -20,6 +22,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   @ViewChild('dynamicComponent', { read: ViewContainerRef })
   viewContainerRef: any;
 
+
   component: Type<{}>;
 
   modalComponentSubscription: Subscription;
@@ -28,7 +31,8 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private changeDetectorRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +43,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   createDynamicComponent(component: Type<{}>): void {
+    this.changeDetectorRef.detectChanges();
     if (this.component) {
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(
         component
@@ -47,8 +52,6 @@ export class ModalComponent implements OnInit, OnDestroy {
         componentFactory
       );
       componentRef.changeDetectorRef.detectChanges();
-    } else {
-      this.viewContainerRef.clear();
     }
   }
 
