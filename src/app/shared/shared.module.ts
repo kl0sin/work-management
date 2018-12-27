@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NotificationComponent } from './notification/component/notification.component';
 import { NewEventComponent } from '../modules/home/components/new-event/new-event.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ModalComponent } from './modal/modal.component';
+import { ModalComponent } from './modal/component/modal.component';
 
 @NgModule({
   declarations: [LogoComponent, FormComponent, NotificationComponent, ModalComponent],

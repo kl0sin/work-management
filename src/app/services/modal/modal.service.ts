@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  ComponentFactoryResolver,
-  ViewContainerRef
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -10,14 +6,16 @@ import { ReplaySubject } from 'rxjs';
 })
 export class ModalService {
   modalComponent$: ReplaySubject<any> = new ReplaySubject<any>(1);
+  modalOptions$: ReplaySubject<any> = new ReplaySubject<any>(1);
 
   constructor() {}
 
-  createModal(component: any): void {
+  createModal(component: any, options?: Object): void {
     this.modalComponent$.next(component);
   }
 
   closeModal(): void {
     this.modalComponent$.next();
+    this.modalOptions$.next();
   }
 }

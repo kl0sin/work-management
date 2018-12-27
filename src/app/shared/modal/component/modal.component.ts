@@ -6,12 +6,12 @@ import {
   ViewContainerRef,
   ViewChild,
   Type,
-  ElementRef,
   ChangeDetectorRef,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ModalService } from 'src/app/services/modal/modal.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { ModalOptions } from '../models/modal-options';
 
 @Component({
   selector: 'app-modal',
@@ -22,10 +22,11 @@ export class ModalComponent implements OnInit, OnDestroy {
   @ViewChild('dynamicComponent', { read: ViewContainerRef })
   viewContainerRef: any;
 
-
   component: Type<{}>;
+  options: ModalOptions = new ModalOptions();
 
   modalComponentSubscription: Subscription;
+  modalOptionsSubscription: Subscription;
 
   faTimes = faTimes;
 
@@ -39,6 +40,11 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalComponentSubscription = this.modalService.modalComponent$.subscribe(component => {
       this.component = component;
       this.createDynamicComponent(component);
+    });
+    this.modalOptionsSubscription = this.modalService.modalOptions$.subscribe(options => {
+      if (options) {
+        this.options = options;
+      }
     });
   }
 
@@ -59,7 +65,14 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalService.closeModal();
   }
 
+  overlayClose(event): void {
+    if (event.target.className.includes('overlay') && this.options.overlayClose) {
+      this.closeModal();
+    }
+  }
+
   ngOnDestroy(): void {
     this.modalComponentSubscription.unsubscribe();
+    this.modalOptionsSubscription.unsubscribe();
   }
 }
